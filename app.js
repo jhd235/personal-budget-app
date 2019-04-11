@@ -12,7 +12,8 @@ Goals:
 // Criando a classe:
 class Despesa{
 
-    constructor(ano, mes, dia, tipo, descricao, valor){
+    constructor(id, ano, mes, dia, tipo, descricao, valor){
+        this.id = id
         this.ano = ano
         this.mes = mes
         this.dia = dia
@@ -22,9 +23,36 @@ class Despesa{
     }
 
 }
+// ------------------------------------------------------------------
+class Bd{
 
+    constructor(){
+        let id = localStorage.getItem('id')
+        if(id === null){
+            localStorage.setItem('id', 0)
+        }
+    }
+
+    getProxId(){
+        let prox_id = localStorage.getItem('id')
+        return parseInt(prox_id) + 1
+    }
+
+    gravaStorage(d){
+        
+        let id = this.getProxId()
+        localStorage.setItem(id, JSON.stringify(d))
+
+        localStorage.setItem('id', id)
+    }
+
+}
+
+let bd = new Bd()
+
+// ------------------------------------------------------------------
+// Event Listener para executar eventos onClick:
 let btn_cad = document.getElementById('btn_cad');
-
 btn_cad.addEventListener('click', function(){
 
     let ano = document.getElementById('ano')
@@ -44,6 +72,8 @@ btn_cad.addEventListener('click', function(){
     )
 
     console.log(despesa)
+    
+    bd.gravaStorage(despesa)
 
     // Zera os campos após criar as despesas
     ano.value = ""
@@ -54,3 +84,5 @@ btn_cad.addEventListener('click', function(){
     valor.value = ""
 
 })
+
+// ------------------------------------------------------------------

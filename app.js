@@ -9,7 +9,22 @@ Goals:
 */
 // ------------------------------------------------------------
 
-let btn_cad = document.getElementById('btn_cad')
+// Criando a classe:
+class Despesa{
+
+    constructor(ano, mes, dia, tipo, descricao, valor){
+        this.ano = ano
+        this.mes = mes
+        this.dia = dia
+        this.tipo = tipo
+        this.descricao = descricao
+        this.valor = valor
+    }
+
+}
+
+let btn_cad = document.getElementById('btn_cad');
+
 btn_cad.addEventListener('click', function(){
 
     let ano = document.getElementById('ano')
@@ -19,6 +34,23 @@ btn_cad.addEventListener('click', function(){
     let descricao = document.getElementById('descricao')
     let valor = document.getElementById('valor')
 
-    console.log(ano.value, mes.value)
+    let despesa = new Despesa(
+        ano.value,
+        mes.value,
+        dia.value,
+        tipo.value,
+        descricao.value,
+        valor.value,
+    )
+
+    console.log(despesa)
+
+    // Zera os campos após criar as despesas
+    ano.value = ""
+    mes.value = ""
+    dia.value = ""
+    tipo.value = ""
+    descricao.value = ""
+    valor.value = ""
 
 })

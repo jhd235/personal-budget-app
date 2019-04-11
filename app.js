@@ -22,6 +22,8 @@ class Despesa{
         this.valor = valor
     }
 
+    // Criar estrutura de validação dos dados do user;
+
 }
 // ------------------------------------------------------------------
 class Bd{
@@ -71,7 +73,7 @@ btn_cad.addEventListener('click', function(){
         valor.value,
     )
 
-    console.log(despesa)
+    // console.log(despesa)
     
     bd.gravaStorage(despesa)
 

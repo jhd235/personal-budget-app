@@ -12,8 +12,7 @@ Goals:
 // Criando a classe:
 class Despesa{
 
-    constructor(id, ano, mes, dia, tipo, descricao, valor){
-        this.id = id
+    constructor(ano, mes, dia, tipo, descricao, valor){
         this.ano = ano
         this.mes = mes
         this.dia = dia
@@ -23,6 +22,16 @@ class Despesa{
     }
 
     // Criar estrutura de validação dos dados do user;
+    validaDados(){
+
+        for(let i in this){
+            console.log('Validados: ' + this[i])
+            if(this[i] == undefined || this[i] == '' || this[i] == null){
+                return false
+            }
+        }
+        return true
+    }
 
 }
 // ------------------------------------------------------------------
@@ -30,6 +39,7 @@ class Bd{
 
     constructor(){
         let id = localStorage.getItem('id')
+
         if(id === null){
             localStorage.setItem('id', 0)
         }
@@ -72,11 +82,23 @@ btn_cad.addEventListener('click', function(){
         descricao.value,
         valor.value,
     )
-
-    // console.log(despesa)
     
-    bd.gravaStorage(despesa)
+    // Validando os dados antes de add no LocalStorage:
+    if( despesa.validaDados() ){
+        // O if subentende que será executado caso retornar True;
+        // Se true, salva dos dados no localStorage e mostra um popup de sucesso;
+        
+        console.log('Dados validados com sucesso!')
+    } else {
+        // o else subentende que será executado caso retorne False;
+        // Se false, não salva os dados no LocalStorage e mostra um popup de erro;
+        console.log('Dados não validados corretamente.')
+    }
+    
 
+
+
+    /* 
     // Zera os campos após criar as despesas
     ano.value = ""
     mes.value = ""
@@ -85,6 +107,7 @@ btn_cad.addEventListener('click', function(){
     descricao.value = ""
     valor.value = ""
 
+     */
 })
 
 // ------------------------------------------------------------------

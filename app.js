@@ -4,8 +4,6 @@ Goals:
     > criar a função que no clique recupera as coisas;
     > recuperar os valores/referencia dos campos;
     > aplicar o conceito de classes para guardar os valores;
-
-
 */
 // ------------------------------------------------------------
 
@@ -25,7 +23,7 @@ class Despesa{
     validaDados(){
 
         for(let i in this){
-            console.log('Validados: ' + this[i])
+            // console.log('Validados: ' + this[i])
             if(this[i] == undefined || this[i] == '' || this[i] == null){
                 return false
             }
@@ -84,21 +82,19 @@ btn_cad.addEventListener('click', function(){
     )
     
     // Validando os dados antes de add no LocalStorage:
+    
     if( despesa.validaDados() ){
-        // O if subentende que será executado caso retornar True;
         // Se true, salva dos dados no localStorage e mostra um popup de sucesso;
-        
-        console.log('Dados validados com sucesso!')
+
+        bd.gravaStorage(despesa)
+        $('#successDialog').modal('show') //jQuery popup sucesso
+
     } else {
-        // o else subentende que será executado caso retorne False;
         // Se false, não salva os dados no LocalStorage e mostra um popup de erro;
-        console.log('Dados não validados corretamente.')
+
+        $('#errorDialog').modal('show') //jQuery popup erro
     }
     
-
-
-
-    /* 
     // Zera os campos após criar as despesas
     ano.value = ""
     mes.value = ""
@@ -106,8 +102,6 @@ btn_cad.addEventListener('click', function(){
     tipo.value = ""
     descricao.value = ""
     valor.value = ""
-
-     */
 })
 
 // ------------------------------------------------------------------

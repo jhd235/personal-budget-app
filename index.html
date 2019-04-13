@@ -108,8 +108,48 @@
       </div>
     </div>
 
-    <script src="app.js"></script>
+    <!-- Error dialog -->
+    <div class="modal fade" id="errorDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-danger">
+            <h5 class="modal-title" id="exampleModalLabel">Opa, algo deu errado!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Existem campos não preenchidos!
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Voltar e corrirgir</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <!-- Success dialog -->
+    <div class="modal fade" id="successDialog" tabindex="-1" role="dialog" aria-labelledby="successDialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-success">
+            <h5 class="modal-title" id="exampleModalLabel">Despesa cadastrada!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Sua despesa foi cadastrada com sucesso!
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-dismiss="modal">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Javascript -->
+    <script src="app.js"></script>
   </body>	
 
 </html>

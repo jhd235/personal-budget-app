@@ -81,27 +81,47 @@ btn_cad.addEventListener('click', function(){
         valor.value,
     )
     
-    // Validando os dados antes de add no LocalStorage:
-    
+    // Validando os dados antes de add no LocalStorage e modificando o modal dinamicamente:
+        
+    let modal_label = document.getElementById('modal_label')
+    let modal_body = document.getElementById('modal_body')
+    let modal_header = document.getElementById('modal_header')
+    let modal_button = document.getElementById('btn_modal')
+
     if( despesa.validaDados() ){
         // Se true, salva dos dados no localStorage e mostra um popup de sucesso;
+        modal_header.classList.remove('text-danger')
+        modal_button.classList.remove('btn-danger')
+        modal_header.classList.add('text-success')
+        modal_button.classList.add('btn-success')
+        modal_label.innerHTML = 'Despesa Cadastrada!'
+        modal_body.innerHTML = 'Sua despesa foi cadastrada com sucesso!'
+        modal_button.innerHTML = 'Fechar'
 
         bd.gravaStorage(despesa)
-        $('#successDialog').modal('show') //jQuery popup sucesso
+        $('#registerDialog').modal('show') //jQuery popup sucesso
+
+        // Zera os campos após criar as despesas
+        ano.value = ""
+        mes.value = ""
+        dia.value = ""
+        tipo.value = ""
+        descricao.value = ""
+        valor.value = ""
 
     } else {
         // Se false, não salva os dados no LocalStorage e mostra um popup de erro;
+        modal_header.classList.remove('text-success')
+        modal_button.classList.remove('btn-success')
+        modal_header.classList.add('text-danger')
+        modal_button.classList.add('btn-danger')
+        modal_label.innerHTML = 'Opa, algo deu errado!'
+        modal_body.innerHTML = 'Algum campo necessita ser preenchido para completar o cadastro!'
+        modal_button.innerHTML = 'Voltar e corrigir'
 
-        $('#errorDialog').modal('show') //jQuery popup erro
+        $('#registerDialog').modal('show') //jQuery popup erro
     }
     
-    // Zera os campos após criar as despesas
-    ano.value = ""
-    mes.value = ""
-    dia.value = ""
-    tipo.value = ""
-    descricao.value = ""
-    valor.value = ""
 })
 
 // ------------------------------------------------------------------

@@ -108,45 +108,35 @@
       </div>
     </div>
 
-    <!-- Error dialog -->
-    <div class="modal fade" id="errorDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Success/error dialog -->
+    <div class="modal fade" id="registerDialog" tabindex="-1" role="dialog" aria-labelledby="registerDialog" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header text-danger">
-            <h5 class="modal-title" id="exampleModalLabel">Opa, algo deu errado!</h5>
+          <div class="modal-header" id="modal_header">
+            <h5 class="modal-title" id="modal_label">...</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            Existem campos não preenchidos!
+          <div class="modal-body" id="modal_body">
+            ...
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Voltar e corrirgir</button>
+            <button type="button" class="btn" data-dismiss="modal" id="btn_modal">...</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Success dialog -->
-    <div class="modal fade" id="successDialog" tabindex="-1" role="dialog" aria-labelledby="successDialog" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header text-success">
-            <h5 class="modal-title" id="exampleModalLabel">Despesa cadastrada!</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Sua despesa foi cadastrada com sucesso!
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-success" data-dismiss="modal">Fechar</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!--
+      - h5 (id: 'modal_label') -> innerHTML
+      - div (id: 'modal_body') -> innerHTML
+      - button (id: 'btn_modal') -> innerHTML
+
+      cores:
+        - div (id: 'modal_header') -> class: text-danger/success
+        - button (id: 'btn_modal') -> class: btn-danger/success
+    -->
 
     <!-- Javascript -->
     <script src="app.js"></script>

@@ -1,12 +1,10 @@
 /*
 Goals:
-
     > criar a função que no clique recupera as coisas;
     > recuperar os valores/referencia dos campos;
     > aplicar o conceito de classes para guardar os valores;
 */
 // ------------------------------------------------------------
-
 // Criando a classe:
 class Despesa{
 
@@ -30,7 +28,6 @@ class Despesa{
         }
         return true
     }
-
 }
 // ------------------------------------------------------------------
 class Bd{
@@ -81,7 +78,6 @@ class Bd{
         // retorna a array de objetos:
         return despesas
     }
-
 }
 
 let bd = new Bd()
@@ -141,16 +137,50 @@ let cadastrar = function(){
 
         $('#registerDialog').modal('show') //jQuery popup erro
     }
-
 }
 // ------------------------------------------------------------------
 // Função que carrega a lista de itens ao carregar a consulta.html:
 let carregaRegistros = function(){
 
+    // Recuperando os valores da array 'despesas'
     let despesas = new Array()
     despesas = bd.recuperaRegistros()
-    console.log(despesas[0])
     
+    // referenciando a table body do html:
+    let lista_despesas = document.getElementById('lista_despesas')
+
+    // Iterando sobre os itens salvos e escrevendo nas tables:
+    // d é cada 'fatia' que o callback da função retorna.
+    despesas.forEach(function(d){ 
+
+        // console.log(d.tipo)
+
+        // ajustando o d.tipo, que com valor number:
+        switch(parseInt(d.tipo)){
+
+            case 1: d.tipo = 'Alimentação'
+                break;
+            case 2: d.tipo = 'Educação'
+                break;
+            case 3: d.tipo = 'Lazer'
+                break;
+            case 4: d.tipo = 'Saúde'
+                break;
+            case 5: d.tipo = 'Transporte'
+                break
+
+        }
+        // console.log(d.tipo)
+
+        // Inserindo os valores nas tables:
+        let linha = lista_despesas.insertRow()
+        linha.insertCell(0).innerHTML = `${d.dia}/${d.mes}/${d.ano} `
+        linha.insertCell(1).innerHTML = d.tipo
+        linha.insertCell(2).innerHTML = d.descricao
+        linha.insertCell(3).innerHTML = d.valor
+
+    })
+
 /*  
     // aguardando resposta do prof se isto está ok tbm:
     let despesas = bd.recuperaRegistros() 

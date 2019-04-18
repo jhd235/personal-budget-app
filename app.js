@@ -3,6 +3,7 @@ Goals:
     > criar a função que no clique recupera as coisas;
     > recuperar os valores/referencia dos campos;
     > aplicar o conceito de classes para guardar os valores;
+    > Modificar método 'onclick' no html por algo no proprio js, tipo usar um condicional para ver se caso retornar 'null', dar um continue, caso não, busca pelo botão.
 */
 // ------------------------------------------------------------
 // Criando a classe:
@@ -77,6 +78,10 @@ class Bd{
 
         // retorna a array de objetos:
         return despesas
+    }
+
+    pesquisar(des){
+        console.log(des)
     }
 }
 
@@ -186,4 +191,21 @@ let carregaRegistros = function(){
     let despesas = bd.recuperaRegistros() 
     console.log(despesas)
  */
+}
+// ------------------------------------------------------------------
+// Lógica para filtrar itens:
+let pesquisarRegistros = function(){
+
+    // Recuperando os valores dos campos:
+    let ano = document.getElementById('ano').value
+    let mes = document.getElementById('mes').value
+    let dia = document.getElementById('dia').value
+    let tipo = document.getElementById('tipo').value
+    let descricao = document.getElementById('descricao').value
+    let valor = document.getElementById('valor').value
+
+    let despesa = new Despesa( ano, mes, dia, tipo, descricao, valor)
+
+
+    bd.pesquisar(despesa)
 }

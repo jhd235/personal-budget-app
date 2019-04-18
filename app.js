@@ -56,14 +56,16 @@ class Bd{
         localStorage.setItem('id', id)
     }
 
+    recuperaRegistros(){
+
+        console.log('Estamos recuperando, peraê vey.')
+    }
+
 }
 
 let bd = new Bd()
 
 // ------------------------------------------------------------------
-// recuperando referencia do botão html:
-let btn_cad = document.getElementById('btn_cad');
-
 // Função em si:
 let cadastrar = function(){
 
@@ -118,10 +120,11 @@ let cadastrar = function(){
 
         $('#registerDialog').modal('show') //jQuery popup erro
     }
-    
+
 }
-
-// onClick
-btn_cad.addEventListener('click', cadastrar)
-
 // ------------------------------------------------------------------
+// Função que carrega a lista de itens ao carregar a consulta.html:
+let carregaRegistros = function(){
+
+    bd.recuperaRegistros()
+}

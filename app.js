@@ -89,8 +89,8 @@ btn_cad.addEventListener('click', function(){
 
     if( despesa.validaDados() ){
         // Se true, salva dos dados no localStorage e mostra um popup de sucesso;
-        modal_header.className('modal-header text-success')
-        modal_button.className('btn btn-success')
+        modal_header.className = 'modal-header text-success'
+        modal_button.className = 'btn btn-success'
         modal_label.innerHTML = 'Despesa Cadastrada!'
         modal_body.innerHTML = 'Sua despesa foi cadastrada com sucesso!'
         modal_button.innerHTML = 'Fechar'
@@ -108,8 +108,8 @@ btn_cad.addEventListener('click', function(){
 
     } else {
         // Se false, não salva os dados no LocalStorage e mostra um popup de erro;
-        modal_header.className('modal-header text-danger')
-        modal_button.className('btn btn-danger')
+        modal_header.className = 'modal-header text-danger'
+        modal_button.className = 'btn btn-danger'
         modal_label.innerHTML = 'Opa, algo deu errado!'
         modal_body.innerHTML = 'Algum campo necessita ser preenchido para completar o cadastro!'
         modal_button.innerHTML = 'Voltar e corrigir'

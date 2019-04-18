@@ -82,7 +82,6 @@ btn_cad.addEventListener('click', function(){
     )
     
     // Validando os dados antes de add no LocalStorage e modificando o modal dinamicamente:
-        
     let modal_label = document.getElementById('modal_label')
     let modal_body = document.getElementById('modal_body')
     let modal_header = document.getElementById('modal_header')

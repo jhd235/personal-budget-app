@@ -120,12 +120,12 @@ let cadastrar = function(){
         $('#registerDialog').modal('show') //jQuery popup sucesso
 
         // Zera os campos após criar as despesas
-        ano.value = ""
-        mes.value = ""
-        dia.value = ""
-        tipo.value = ""
-        descricao.value = ""
-        valor.value = ""
+        ano.value = ''
+        mes.value = ''
+        dia.value = ''
+        tipo.value = ''
+        descricao.value = ''
+        valor.value = ''
 
     } else {
         // Se false, não salva os dados no LocalStorage e mostra um popup de erro;

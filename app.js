@@ -61,9 +61,11 @@ class Bd{
 let bd = new Bd()
 
 // ------------------------------------------------------------------
-// Event Listener para executar eventos onClick:
+// recuperando referencia do botão html:
 let btn_cad = document.getElementById('btn_cad');
-btn_cad.addEventListener('click', function(){
+
+// Função em si:
+let cadastrar = function(){
 
     let ano = document.getElementById('ano')
     let mes = document.getElementById('mes')
@@ -117,6 +119,9 @@ btn_cad.addEventListener('click', function(){
         $('#registerDialog').modal('show') //jQuery popup erro
     }
     
-})
+}
+
+// onClick
+btn_cad.addEventListener('click', cadastrar)
 
 // ------------------------------------------------------------------

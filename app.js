@@ -123,7 +123,8 @@ class Bd{
             })
         }
 
-        console.log(despesasFiltradas)
+        return despesasFiltradas
+
     }
 }
 
@@ -187,14 +188,16 @@ let cadastrar = function(){
 }
 // ------------------------------------------------------------------
 // Função que carrega a lista de itens ao carregar a consulta.html:
-let carregaRegistros = function(){
+let carregaRegistros = function(despesas = Array(), filtro = false){
 
-    // Recuperando os valores da array 'despesas'
-    let despesas = new Array()
-    despesas = bd.recuperaRegistros()
-    
+    if(despesas.length == 0 && filtro == false){
+        // Recuperando os valores da array 'despesas'
+        despesas = bd.recuperaRegistros()
+    }
+
     // referenciando a table body do html:
     let lista_despesas = document.getElementById('lista_despesas')
+    lista_despesas.innerHTML = ''
 
     // Iterando sobre os itens salvos e escrevendo nas tables:
     // d é cada 'fatia' que o callback da função retorna.
@@ -248,6 +251,10 @@ let pesquisarRegistros = function(){
 
     let despesa = new Despesa( ano, mes, dia, tipo, descricao, valor)
 
+    let despesas = bd.pesquisar(despesa)
 
-    bd.pesquisar(despesa)
+
+
+    carregaRegistros(despesas, true)
+
 }

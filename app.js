@@ -57,8 +57,29 @@ class Bd{
     }
 
     recuperaRegistros(){
+        // array de objetos:
+        let despesas = new Array()
 
-        console.log('Estamos recuperando, peraê vey.')
+        // quantia de ids para recuperar
+        let id = localStorage.getItem('id')
+        
+        for(let i = 1; i <= id; i++){
+            //recupera a despesa:
+            let despesa = JSON.parse(localStorage.getItem(i))
+
+            // verificar itens removidos:
+            if(despesa === null){
+
+                continue //continua o loop pulando a iteração em questão;
+            }
+
+            // push do obj na array:
+            despesas.push(despesa)
+
+        }
+
+        // retorna a array de objetos:
+        return despesas
     }
 
 }
@@ -126,5 +147,13 @@ let cadastrar = function(){
 // Função que carrega a lista de itens ao carregar a consulta.html:
 let carregaRegistros = function(){
 
-    bd.recuperaRegistros()
+    let despesas = new Array()
+    despesas = bd.recuperaRegistros()
+    console.log(despesas[0])
+    
+/*  
+    // aguardando resposta do prof se isto está ok tbm:
+    let despesas = bd.recuperaRegistros() 
+    console.log(despesas)
+ */
 }

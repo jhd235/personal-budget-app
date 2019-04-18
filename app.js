@@ -80,8 +80,50 @@ class Bd{
         return despesas
     }
 
-    pesquisar(des){
-        console.log(des)
+    // Método para recuperar dados do user na pesquisa dele:
+    pesquisar(despesa){
+
+        let despesasFiltradas = Array()
+        despesasFiltradas = this.recuperaRegistros()
+
+        // Os filters só passarao se os campos forem diferentes de zero, e se iguais ao resultado do localStorage, caso não, o filter é pulado e não passa no condicional
+        if(despesa.ano != ''){  
+            despesasFiltradas = despesasFiltradas.filter((d) =>{
+                return d.ano == despesa.ano
+            })
+        }
+
+        if(despesa.mes != ''){
+            despesasFiltradas = despesasFiltradas.filter((d) =>{
+                return d.mes == despesa.mes
+            })
+        }
+
+        if(despesa.dia != ''){
+            despesasFiltradas = despesasFiltradas.filter((d) =>{
+                return d.dia == despesa.dia
+            })
+        }
+
+        if(despesa.tipo != ''){
+            despesasFiltradas = despesasFiltradas.filter((d) =>{
+                return d.tipo == despesa.tipo
+            })
+        }
+
+        if(despesa.descricao != ''){
+            despesasFiltradas = despesasFiltradas.filter((d) =>{
+                return d.descricao == despesa.descricao
+            })
+        }
+
+        if(despesa.valor != ''){
+            despesasFiltradas = despesasFiltradas.filter((d) =>{
+                return d.valor == despesa.valor
+            })
+        }
+
+        console.log(despesasFiltradas)
     }
 }
 

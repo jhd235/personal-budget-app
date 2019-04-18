@@ -4,6 +4,8 @@ Goals:
     > recuperar os valores/referencia dos campos;
     > aplicar o conceito de classes para guardar os valores;
     > Modificar método 'onclick' no html por algo no proprio js, tipo usar um condicional para ver se caso retornar 'null', dar um continue, caso não, busca pelo botão.
+    > Adicionar uma página com indicadores e/ou gráficos;
+    > Adicionar alguns modais para confirmar exclusão de despesas
 */
 // ------------------------------------------------------------
 // Criando a classe:
@@ -50,7 +52,6 @@ class Bd{
         
         let id = this.getProxId()
         localStorage.setItem(id, JSON.stringify(d))
-
         localStorage.setItem('id', id)
     }
 
@@ -70,6 +71,9 @@ class Bd{
 
                 continue //continua o loop pulando a iteração em questão;
             }
+
+            // adicionando um id aos objetos para identificar depois:
+            despesa.id = i
 
             // push do obj na array:
             despesas.push(despesa)
@@ -126,6 +130,11 @@ class Bd{
         return despesasFiltradas
 
     }
+
+    removerItem(id){
+        localStorage.removeItem(id)
+    }
+
 }
 
 let bd = new Bd()
@@ -204,7 +213,6 @@ let carregaRegistros = function(despesas = Array(), filtro = false){
     despesas.forEach(function(d){ 
 
         // console.log(d.tipo)
-
         // ajustando o d.tipo, que com valor number:
         switch(parseInt(d.tipo)){
 
@@ -229,6 +237,23 @@ let carregaRegistros = function(despesas = Array(), filtro = false){
         linha.insertCell(2).innerHTML = d.descricao
         linha.insertCell(3).innerHTML = d.valor
 
+        // Botão para deletar despesa
+        let btn = document.createElement('button') // criar o button
+        btn.className = 'btn btn-danger' // add uma class
+        btn.innerHTML = '<i class="fas fa-times"></i>'
+        btn.style.borderRadius = '12px'
+        btn.id = `_botao_id_${d.id}`
+        btn.onclick = function(){
+            let id = this.id.replace('_botao_id_', '')
+            // alert(id)
+
+            bd.removerItem(id)
+            window.location.reload()
+        }
+        linha.insertCell(4).append(btn) // insere ele na tbody
+
+        // console.log(d)
+
     })
 
 /*  
@@ -249,11 +274,9 @@ let pesquisarRegistros = function(){
     let descricao = document.getElementById('descricao').value
     let valor = document.getElementById('valor').value
 
-    let despesa = new Despesa( ano, mes, dia, tipo, descricao, valor)
+    let despesa = new Despesa(ano, mes, dia, tipo, descricao, valor)
 
     let despesas = bd.pesquisar(despesa)
-
-
 
     carregaRegistros(despesas, true)
 

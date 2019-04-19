@@ -2,6 +2,8 @@
 
 This is a simple budget app, written in Javascript/ES6+ with purpose to learn and train some js OOP skills. 
 
+Try the live edition here: [>> LINK <<<](https://personal-budget-app.netlify.com/)
+
 ### In this project:
 
 - Add your day to day expenses;

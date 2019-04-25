@@ -190,7 +190,7 @@ let register = function(){
         modal_button.className = 'btn btn-danger'
         modal_label.innerHTML = 'Ops, something went wrong!'
         modal_body.innerHTML = 'Some fields need to be filled in order to complete the register!'
-        modal_button.innerHTML = 'Go back and fix.'
+        modal_button.innerHTML = 'Go back and fix'
 
         $('#registerDialog').modal('show') //jQuery popup erro
     }

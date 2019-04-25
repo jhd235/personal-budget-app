@@ -143,12 +143,12 @@ let db = new Db()
 // Função em si:
 let register = function(){
 
-    let year = document.getElementById('ano')
-    let month = document.getElementById('mes')
-    let day = document.getElementById('dia')
-    let type = document.getElementById('tipo')
-    let description = document.getElementById('descricao')
-    let value = document.getElementById('valor')
+    let year = document.getElementById('year')
+    let month = document.getElementById('month')
+    let day = document.getElementById('day')
+    let type = document.getElementById('type')
+    let description = document.getElementById('description')
+    let value = document.getElementById('value')
 
     let expense = new Expense(
         year.value,
@@ -216,15 +216,15 @@ let loadRegisters = function(expenses = Array(), filter = false){
         // ajustando o d.type, que com valor number:
         switch(parseInt(d.type)){
 
-            case 1: d.type = 'Alimentação'
+            case 1: d.type = 'Food'
                 break;
-            case 2: d.type = 'Educação'
+            case 2: d.type = 'Education'
                 break;
-            case 3: d.type = 'Lazer'
+            case 3: d.type = 'Leisure'
                 break;
-            case 4: d.type = 'Saúde'
+            case 4: d.type = 'Heath'
                 break;
-            case 5: d.type = 'Transporte'
+            case 5: d.type = 'Transport'
                 break
 
         }
@@ -267,12 +267,12 @@ let loadRegisters = function(expenses = Array(), filter = false){
 let searchRegisters = function(){
 
     // Recuperando os valores dos campos:
-    let year = document.getElementById('ano').value
-    let month = document.getElementById('mes').value
-    let day = document.getElementById('dia').value
-    let type = document.getElementById('tipo').value
-    let description = document.getElementById('descricao').value
-    let value = document.getElementById('valor').value
+    let year = document.getElementById('year').value
+    let month = document.getElementById('month').value
+    let day = document.getElementById('day').value
+    let type = document.getElementById('type').value
+    let description = document.getElementById('description').value
+    let value = document.getElementById('value').value
 
     let expense = new Expense(year, month, day, type, description, value)
 

@@ -9,19 +9,19 @@ Goals:
 */
 // ------------------------------------------------------------
 // Criando a classe:
-class Despesa{
+class Expense{
 
-    constructor(ano, mes, dia, tipo, descricao, valor){
-        this.ano = ano
-        this.mes = mes
-        this.dia = dia
-        this.tipo = tipo
-        this.descricao = descricao
-        this.valor = valor
+    constructor(year, month, day, type, description, value){
+        this.year = year
+        this.month = month
+        this.day = day
+        this.type = type
+        this.description = description
+        this.value = value
     }
 
     // Criar estrutura de validação dos dados do user;
-    validaDados(){
+    dataValidate(){
 
         for(let i in this){
             // console.log('Validados: ' + this[i])
@@ -33,7 +33,7 @@ class Despesa{
     }
 }
 // ------------------------------------------------------------------
-class Bd{
+class Db{
 
     constructor(){
         let id = localStorage.getItem('id')
@@ -43,120 +43,120 @@ class Bd{
         }
     }
 
-    getProxId(){
-        let prox_id = localStorage.getItem('id')
-        return parseInt(prox_id) + 1
+    getNextId(){
+        let next_id = localStorage.getItem('id')
+        return parseInt(next_id) + 1
     }
 
-    gravaStorage(d){
+    storageWrite(d){
         
-        let id = this.getProxId()
+        let id = this.getNextId()
         localStorage.setItem(id, JSON.stringify(d))
         localStorage.setItem('id', id)
     }
 
-    recuperaRegistros(){
+    fetchRegisters(){
         // array de objetos:
-        let despesas = new Array()
+        let expenses = new Array()
 
         // quantia de ids para recuperar
         let id = localStorage.getItem('id')
         
         for(let i = 1; i <= id; i++){
             //recupera a despesa:
-            let despesa = JSON.parse(localStorage.getItem(i))
+            let expense = JSON.parse(localStorage.getItem(i))
 
             // verificar itens removidos:
-            if(despesa === null){
+            if(expense === null){
 
                 continue //continua o loop pulando a iteração em questão;
             }
 
             // adicionando um id aos objetos para identificar depois:
-            despesa.id = i
+            expense.id = i
 
             // push do obj na array:
-            despesas.push(despesa)
+            expenses.push(expense)
 
         }
 
         // retorna a array de objetos:
-        return despesas
+        return expenses
     }
 
     // Método para recuperar dados do user na pesquisa dele:
-    pesquisar(despesa){
+    search(expense){
 
-        let despesasFiltradas = Array()
-        despesasFiltradas = this.recuperaRegistros()
+        let filteredExpenses = Array()
+        filteredExpenses = this.fetchRegisters()
 
         // Os filters só passarao se os campos forem diferentes de zero, e se iguais ao resultado do localStorage, caso não, o filter é pulado e não passa no condicional
-        if(despesa.ano != ''){  
-            despesasFiltradas = despesasFiltradas.filter((d) =>{
-                return d.ano == despesa.ano
+        if(expense.year != ''){  
+            filteredExpenses = filteredExpenses.filter((d) =>{
+                return d.year == expense.year
             })
         }
 
-        if(despesa.mes != ''){
-            despesasFiltradas = despesasFiltradas.filter((d) =>{
-                return d.mes == despesa.mes
+        if(expense.month != ''){
+            filteredExpenses = filteredExpenses.filter((d) =>{
+                return d.month == expense.month
             })
         }
 
-        if(despesa.dia != ''){
-            despesasFiltradas = despesasFiltradas.filter((d) =>{
-                return d.dia == despesa.dia
+        if(expense.day != ''){
+            filteredExpenses = filteredExpenses.filter((d) =>{
+                return d.day == expense.day
             })
         }
 
-        if(despesa.tipo != ''){
-            despesasFiltradas = despesasFiltradas.filter((d) =>{
-                return d.tipo == despesa.tipo
+        if(expense.type != ''){
+            filteredExpenses = filteredExpenses.filter((d) =>{
+                return d.type == expense.type
             })
         }
 
-        if(despesa.descricao != ''){
-            despesasFiltradas = despesasFiltradas.filter((d) =>{
-                return d.descricao == despesa.descricao
+        if(expense.description != ''){
+            filteredExpenses = filteredExpenses.filter((d) =>{
+                return d.description == expense.description
             })
         }
 
-        if(despesa.valor != ''){
-            despesasFiltradas = despesasFiltradas.filter((d) =>{
-                return d.valor == despesa.valor
+        if(expense.value != ''){
+            filteredExpenses = filteredExpenses.filter((d) =>{
+                return d.value == expense.value
             })
         }
 
-        return despesasFiltradas
+        return filteredExpenses
 
     }
 
-    removerItem(id){
+    itemRemove(id){
         localStorage.removeItem(id)
     }
 
 }
 
-let bd = new Bd()
+let db = new Db()
 
 // ------------------------------------------------------------------
 // Função em si:
-let cadastrar = function(){
+let register = function(){
 
-    let ano = document.getElementById('ano')
-    let mes = document.getElementById('mes')
-    let dia = document.getElementById('dia')
-    let tipo = document.getElementById('tipo')
-    let descricao = document.getElementById('descricao')
-    let valor = document.getElementById('valor')
+    let year = document.getElementById('ano')
+    let month = document.getElementById('mes')
+    let day = document.getElementById('dia')
+    let type = document.getElementById('tipo')
+    let description = document.getElementById('descricao')
+    let value = document.getElementById('valor')
 
-    let despesa = new Despesa(
-        ano.value,
-        mes.value,
-        dia.value,
-        tipo.value,
-        descricao.value,
-        valor.value,
+    let expense = new Expense(
+        year.value,
+        month.value,
+        day.value,
+        type.value,
+        description.value,
+        value.value,
     )
     
     // Validando os dados antes de add no LocalStorage e modificando o modal dinamicamente:
@@ -165,92 +165,92 @@ let cadastrar = function(){
     let modal_header = document.getElementById('modal_header')
     let modal_button = document.getElementById('btn_modal')
 
-    if( despesa.validaDados() ){
+    if( expense.dataValidate() ){
         // Se true, salva dos dados no localStorage e mostra um popup de sucesso;
         modal_header.className = 'modal-header text-success'
         modal_button.className = 'btn btn-success'
-        modal_label.innerHTML = 'Despesa Cadastrada!'
-        modal_body.innerHTML = 'Sua despesa foi cadastrada com sucesso!'
-        modal_button.innerHTML = 'Fechar'
+        modal_label.innerHTML = 'Expense was registered!'
+        modal_body.innerHTML = 'Your expense was succefully registered!'
+        modal_button.innerHTML = 'Close'
 
-        bd.gravaStorage(despesa)
+        db.storageWrite(expense)
         $('#registerDialog').modal('show') //jQuery popup sucesso
 
         // Zera os campos após criar as despesas
-        ano.value = ''
-        mes.value = ''
-        dia.value = ''
-        tipo.value = ''
-        descricao.value = ''
-        valor.value = ''
+        year.value = ''
+        month.value = ''
+        day.value = ''
+        type.value = ''
+        description.value = ''
+        value.value = ''
 
     } else {
         // Se false, não salva os dados no LocalStorage e mostra um popup de erro;
         modal_header.className = 'modal-header text-danger'
         modal_button.className = 'btn btn-danger'
-        modal_label.innerHTML = 'Opa, algo deu errado!'
-        modal_body.innerHTML = 'Algum campo necessita ser preenchido para completar o cadastro!'
-        modal_button.innerHTML = 'Voltar e corrigir'
+        modal_label.innerHTML = 'Ops, something went wrong!'
+        modal_body.innerHTML = 'Some fields need to be filled in order to complete the register!'
+        modal_button.innerHTML = 'Go back and fix.'
 
         $('#registerDialog').modal('show') //jQuery popup erro
     }
 }
 // ------------------------------------------------------------------
 // Função que carrega a lista de itens ao carregar a consulta.html:
-let carregaRegistros = function(despesas = Array(), filtro = false){
+let loadRegisters = function(expenses = Array(), filter = false){
 
-    if(despesas.length == 0 && filtro == false){
+    if(expenses.length == 0 && filter == false){
         // Recuperando os valores da array 'despesas'
-        despesas = bd.recuperaRegistros()
+        expenses = db.fetchRegisters()
     }
 
     // referenciando a table body do html:
-    let lista_despesas = document.getElementById('lista_despesas')
-    lista_despesas.innerHTML = ''
+    let expenses_list = document.getElementById('expenses_list')
+    expenses_list.innerHTML = ''
 
     // Iterando sobre os itens salvos e escrevendo nas tables:
     // d é cada 'fatia' que o callback da função retorna.
-    despesas.forEach(function(d){ 
+    expenses.forEach(function(d){ 
 
-        // console.log(d.tipo)
-        // ajustando o d.tipo, que com valor number:
-        switch(parseInt(d.tipo)){
+        // console.log(d.type)
+        // ajustando o d.type, que com valor number:
+        switch(parseInt(d.type)){
 
-            case 1: d.tipo = 'Alimentação'
+            case 1: d.type = 'Alimentação'
                 break;
-            case 2: d.tipo = 'Educação'
+            case 2: d.type = 'Educação'
                 break;
-            case 3: d.tipo = 'Lazer'
+            case 3: d.type = 'Lazer'
                 break;
-            case 4: d.tipo = 'Saúde'
+            case 4: d.type = 'Saúde'
                 break;
-            case 5: d.tipo = 'Transporte'
+            case 5: d.type = 'Transporte'
                 break
 
         }
-        // console.log(d.tipo)
+        // console.log(d.type)
 
         // Inserindo os valores nas tables:
-        let linha = lista_despesas.insertRow()
-        linha.insertCell(0).innerHTML = `${d.dia}/${d.mes}/${d.ano} `
-        linha.insertCell(1).innerHTML = d.tipo
-        linha.insertCell(2).innerHTML = d.descricao
-        linha.insertCell(3).innerHTML = d.valor
+        let line = expenses_list.insertRow()
+        line.insertCell(0).innerHTML = `${d.day}/${d.month}/${d.year} `
+        line.insertCell(1).innerHTML = d.type
+        line.insertCell(2).innerHTML = d.description
+        line.insertCell(3).innerHTML = d.value
 
         // Botão para deletar despesa
         let btn = document.createElement('button') // criar o button
         btn.className = 'btn btn-danger' // add uma class
         btn.innerHTML = '<i class="fas fa-times"></i>'
         btn.style.borderRadius = '12px'
-        btn.id = `_botao_id_${d.id}`
+        btn.id = `_button_id_${d.id}`
         btn.onclick = function(){
-            let id = this.id.replace('_botao_id_', '')
+            let id = this.id.replace('_button_id_', '')
             // alert(id)
 
-            bd.removerItem(id)
+            db.itemRemove(id)
             window.location.reload()
         }
-        linha.insertCell(4).append(btn) // insere ele na tbody
+        line.insertCell(4).append(btn) // insere ele na tbody
 
         // console.log(d)
 
@@ -264,20 +264,20 @@ let carregaRegistros = function(despesas = Array(), filtro = false){
 }
 // ------------------------------------------------------------------
 // Lógica para filtrar itens:
-let pesquisarRegistros = function(){
+let searchRegisters = function(){
 
     // Recuperando os valores dos campos:
-    let ano = document.getElementById('ano').value
-    let mes = document.getElementById('mes').value
-    let dia = document.getElementById('dia').value
-    let tipo = document.getElementById('tipo').value
-    let descricao = document.getElementById('descricao').value
-    let valor = document.getElementById('valor').value
+    let year = document.getElementById('ano').value
+    let month = document.getElementById('mes').value
+    let day = document.getElementById('dia').value
+    let type = document.getElementById('tipo').value
+    let description = document.getElementById('descricao').value
+    let value = document.getElementById('valor').value
 
-    let despesa = new Despesa(ano, mes, dia, tipo, descricao, valor)
+    let expense = new Expense(year, month, day, type, description, value)
 
-    let despesas = bd.pesquisar(despesa)
+    let expenses = db.search(expense)
 
-    carregaRegistros(despesas, true)
+    loadRegisters(expenses, true)
 
 }

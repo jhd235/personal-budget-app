@@ -9,7 +9,7 @@
 <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 <script src="app.js"></script>
 </head>
-<body onload="carregaRegistros()">
+<body onload="loadRegisters()">
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
 <div class="container">
 <a class="navbar-brand" href="#">
@@ -83,7 +83,7 @@
 <input type="text" class="form-control" placeholder="Valor" id="valor" />
 </div>
 <div class="col-md-2 d-flex justify-content-end">
-<button type="button" class="btn btn-primary" onclick="pesquisarRegistros()">
+<button type="button" class="btn btn-primary" onclick="searchRegisters()">
 <i class="fas fa-search"></i>
 </button>
 </div>
@@ -100,7 +100,7 @@
 <th></th>
 </tr>
 </thead>
-<tbody id="lista_despesas">
+<tbody id="expenses_list">
 </tbody>
 </table>
 </div>

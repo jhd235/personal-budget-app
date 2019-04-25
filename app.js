@@ -279,5 +279,13 @@ let searchRegisters = function(){
     let expenses = db.search(expense)
 
     loadRegisters(expenses, true)
-
 }
+
+// ------------------------------------------------------------------
+// Libs:
+// Cleave.js:
+new Cleave('#value', {
+    numeral: true,
+    numeralDecimalMark: ',',
+    delimiter: '.'
+})

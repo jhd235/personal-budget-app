@@ -17,7 +17,7 @@ class Expense{
         this.day = day
         this.type = type
         this.description = description
-        this.value = value
+        this.value = parseFloat(value)
     }
 
     // Criar estrutura de validação dos dados do user;
@@ -252,7 +252,22 @@ let loadRegisters = function(expenses = Array(), filter = false){
         }
         line.insertCell(4).append(btn) // insere ele na tbody
 
-        // console.log(d)
+        //console.log(expenses)
+
+        // Adicionando o total gasto:
+        let total_spent = document.getElementById('total_spend')
+
+        //itera sobre os valores 'value' de expenses 
+        let mappedSpent = expenses.map((item) => {
+            return item.value
+        })
+
+        // Soma os valores da array produza pelo map
+        let sumSpent = mappedSpent.reduce((a,b) => a + b)
+
+        total_spent.innerHTML = sumSpent
+        console.log(sumSpent)
+
 
     })
 
@@ -286,6 +301,6 @@ let searchRegisters = function(){
 // Cleave.js:
 new Cleave('#value', {
     numeral: true,
-    numeralDecimalMark: ',',
-    delimiter: '.'
+    numeralDecimalMark: '.',
+    delimiter: ''
 })

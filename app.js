@@ -235,7 +235,7 @@ let loadRegisters = function(expenses = Array(), filter = false){
         line.insertCell(0).innerHTML = `${d.day}/${d.month}/${d.year} `
         line.insertCell(1).innerHTML = d.type
         line.insertCell(2).innerHTML = d.description
-        line.insertCell(3).innerHTML = d.value
+        line.insertCell(3).innerHTML = `R$ ${d.value}`
 
         // Botão para deletar despesa
         let btn = document.createElement('button') // criar o button
@@ -255,8 +255,9 @@ let loadRegisters = function(expenses = Array(), filter = false){
         //console.log(expenses)
 
         // Adicionando o total gasto:
-        let total_spent = document.getElementById('total_spend')
 
+        let total_spent = document.getElementById('total_spend')
+        
         //itera sobre os valores 'value' de expenses 
         let mappedSpent = expenses.map((item) => {
             return item.value
@@ -265,17 +266,8 @@ let loadRegisters = function(expenses = Array(), filter = false){
         // Soma os valores da array produza pelo map
         let sumSpent = mappedSpent.reduce((a,b) => a + b)
 
-        total_spent.innerHTML = sumSpent
-        console.log(sumSpent)
-
-
+        total_spent.innerHTML = `R$ ${sumSpent}`
     })
-
-/*  
-    // aguardando resposta do prof se isto está ok tbm:
-    let despesas = bd.recuperaRegistros() 
-    console.log(despesas)
- */
 }
 // ------------------------------------------------------------------
 // Lógica para filtrar itens:

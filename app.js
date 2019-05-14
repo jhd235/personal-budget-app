@@ -1,12 +1,3 @@
-/*
-Goals:
-    > criar a função que no clique recupera as coisas;
-    > recuperar os valores/referencia dos campos;
-    > aplicar o conceito de classes para guardar os valores;
-    > Modificar método 'onclick' no html por algo no proprio js, tipo usar um condicional para ver se caso retornar 'null', dar um continue, caso não, busca pelo botão.
-    > Adicionar uma página com indicadores e/ou gráficos;
-    > Adicionar alguns modais para confirmar exclusão de despesas
-*/
 // ------------------------------------------------------------
 // Criando a classe:
 class Expense{
@@ -159,22 +150,11 @@ let register = function(){
         value.value,
     )
     
-    // Validando os dados antes de add no LocalStorage e modificando o modal dinamicamente:
-    let modal_label = document.getElementById('modal_label')
-    let modal_body = document.getElementById('modal_body')
-    let modal_header = document.getElementById('modal_header')
-    let modal_button = document.getElementById('btn_modal')
-
+    // Validando os dados antes de add no LocalStorage e modificando o toast dinamicamente:
     if( expense.dataValidate() ){
-        // Se true, salva dos dados no localStorage e mostra um popup de sucesso;
-        modal_header.className = 'modal-header text-success'
-        modal_button.className = 'btn btn-success'
-        modal_label.innerHTML = 'Expense was registered!'
-        modal_body.innerHTML = 'Your expense was succefully registered!'
-        modal_button.innerHTML = 'Close'
-
+        // Se true, salva dos dados no localStorage e mostra um toast de sucesso;
         db.storageWrite(expense)
-        $('#registerDialog').modal('show') //jQuery popup sucesso
+        M.toast({html: 'Your expense was succefully registered', classes: 'light-green darken-4'})
 
         // Zera os campos após criar as despesas
         year.value = ''
@@ -185,14 +165,7 @@ let register = function(){
         value.value = ''
 
     } else {
-        // Se false, não salva os dados no LocalStorage e mostra um popup de erro;
-        modal_header.className = 'modal-header text-danger'
-        modal_button.className = 'btn btn-danger'
-        modal_label.innerHTML = 'Ops, something went wrong!'
-        modal_body.innerHTML = 'Some fields need to be filled in order to complete the register!'
-        modal_button.innerHTML = 'Go back and fix'
-
-        $('#registerDialog').modal('show') //jQuery popup erro
+        M.toast({html: 'Some fields need to be filled in order to complete the register!', classes: 'red darken-4'})
     }
 }
 // ------------------------------------------------------------------
@@ -212,7 +185,6 @@ let loadRegisters = function(expenses = Array(), filter = false){
     // d é cada 'fatia' que o callback da função retorna.
     expenses.forEach(function(d){ 
 
-        // console.log(d.type)
         // ajustando o d.type, que com valor number:
         switch(parseInt(d.type)){
 
@@ -239,23 +211,19 @@ let loadRegisters = function(expenses = Array(), filter = false){
 
         // Botão para deletar despesa
         let btn = document.createElement('button') // criar o button
-        btn.className = 'btn btn-danger' // add uma class
+        btn.className = 'btn red darken-4' // add uma class
         btn.innerHTML = '<i class="fas fa-times"></i>'
         btn.style.borderRadius = '12px'
         btn.id = `_button_id_${d.id}`
         btn.onclick = function(){
             let id = this.id.replace('_button_id_', '')
-            // alert(id)
 
             db.itemRemove(id)
             window.location.reload()
         }
         line.insertCell(4).append(btn) // insere ele na tbody
 
-        //console.log(expenses)
-
         // Adicionando o total gasto:
-
         let total_spent = document.getElementById('total_spend')
         
         //itera sobre os valores 'value' de expenses 

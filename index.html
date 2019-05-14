@@ -1,111 +1,160 @@
-<html>
-   <head>
-      <meta charset="utf-8" />
-      <title>Home - My Personal Budget</title>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-      <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-      <link rel="shortcut icon" type="image/png" href="./img/favicon.ico"/>
-   </head>
-   <body>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
-         <div class="container">
-            <a class="navbar-brand" href="#">
-            <img src="./img/logo.png" width="50" height="35" alt="Personal Budget">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-               <ul class="navbar-nav mr-auto">
-                  <li class="nav-item active">
-                     <a class="nav-link" href="index.html">Register</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="search.html">Search</a>
-                  </li>
-               </ul>
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Home - Budget App</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <nav>
+            <div class="nav-wrapper blue darken-4">
+                <a href="#" class="brand-logo"> &nbspBudget App <i class="material-icons right">attach_money</i></a>
+                <a href="#" data-target="mobile-burger" class="sidenav-trigger"> <i class="material-icons">menu</i> </a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="index.html">Add expenses<i class="material-icons left"> add_circle </i> </a></li>
+                    <li><a href="search.html">Search expenses<i class="material-icons left"> search </i> </a></li>
+                </ul>
             </div>
-         </div>
-      </nav>
-      <div class="container">
-         <div class="row">
-            <div class="col mb-5">
-               <h1 class="display-4">New expense register</h1>
+        </nav>
+
+        <ul class="sidenav light-blue darken-4 white-text" id="mobile-burger">
+            <h3 class="center"> Menu </h3>
+            <li> <a class="white-text" href="index.html" >Add expenses<i class="material-icons left white-text"> add_circle </i> </a></li>
+            <li> <a class="white-text" href="search.html">Search expenses<i class="material-icons left white-text"> search </i> </a></li>
+        </ul>
+
+        <!-- allbody -->
+
+        
+        <div class="container center">
+
+            <h1>New expense register</h1>
+            <br>
+            <!-- INPUT_FIELDS_DD-MM-AA -->
+            <!--LINE-->
+            <div class="row">
+                <div class="col s2"></div> <!--for_spacing-->
+                <div class="input-field col s12 m2">
+                    <input id="day" type="text">
+                    <label for="day">Day</label>
+                </div>
+
+                <div class="input-field col s12 m4">
+                    <select id="month">
+                        <option value="" disabled selected> Month </option>
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                </div>
+
+                <div class="input-field col s12 m2">
+                    <select id="year">
+                        <option value="" disabled selected> Year </option>
+                        <option value="2018"> 2018 </option>
+                        <option value="2019"> 2019 </option>
+                        <option value="2020"> 2020 </option>
+                    </select>
+                </div>
+                <div class="col s2"></div> <!--for_spacing-->
             </div>
-         </div>
-         <div class="row mb-2">
-            <div class="col-md-2">
-               <select class="form-control" id="year">
-                  <option value="">Year</option>
-                  <option value="2018">2018</option>
-                  <option value="2019">2019</option>
-               </select>
+            <!--LINE-->
+
+            <div class="row">
+                <div class="col s2"></div> <!--for_spacing-->
+                <div class="input-field col s12 m8">
+                    <select id="type">
+                        <option value=" " disabled selected>Type</option>
+                        <option value="1">Food</option>
+                        <option value="2">Education</option>
+                        <option value="3">Leisure</option>
+                        <option value="4">Health</option>
+                        <option value="5">Transport</option>
+                    </select>
+                </div>
+                <div class="col s2"></div> <!--for_spacing-->
             </div>
-            <div class="col-md-2">
-               <select class="form-control" id="month">
-                  <option value="">Month</option>
-                  <option value="1">January</option>
-                  <option value="2">February</option>
-                  <option value="3">March</option>
-                  <option value="4">April</option>
-                  <option value="5">May</option>
-                  <option value="6">June</option>
-                  <option value="7">July</option>
-                  <option value="8">August</option>
-                  <option value="9">September</option>
-                  <option value="10">October</option>
-                  <option value="11">November</option>
-                  <option value="12">December</option>
-               </select>
+
+            <div class="row">
+                <div class="col s2"></div> <!--for_spacing-->
+                    <div class ="input-field col s12 m8">
+                        <input id="description" type="text">
+                        <label for="description">Description</label>
+                    </div>
+                <div class="col s2"></div> <!--for_spacing-->
             </div>
-            <div class="col-md-2">
-               <input type="text" class="form-control" placeholder="Day" id="day"/>
+
+            <div class="row">
+                <div class="col s6"></div> <!--for_spacing-->
+                    <div class =" input-field col s12 m2">
+                        <input id="value" type="text">
+                        <label for="value">Value</label>
+                    </div>
+
+                    <div class="col s12 m2">
+                        <a class="btn-floating btn-large green pulse" id="btn_cad" onclick="register()"><i class="material-icons">add</i></a>
+                    </div>
+                <div class="col s2"></div> <!--for_spacing-->
             </div>
-            <div class="col-md-6">
-               <select class="form-control" id="type">
-                  <option value="">Type</option>
-                  <option value="1">Food</option>
-                  <option value="2">Education</option>
-                  <option value="3">Leisure</option>
-                  <option value="4">Health</option>
-                  <option value="5">Transport</option>
-               </select>
+
+        </div> <!-- // end of allbody -->
+
+
+
+        <footer class="page-footer blue darken-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text"> Personal Budget app project </h5>
+                        <p class="grey-text text-lighten-4"> This project was developed with Vanilla Javascript and Materialize (a CSS framework) to learn the new features of ECMAScript ES6 features. </p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text"> Find me here: </h5>
+                        <ul>
+                        <li><a class="grey-text text-lighten-3" href="https://github.com/gughog"> <i class="fab fa-github"></i> Github </a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://instagram.com/gughog42"> <i class="fab fa-instagram"></i> Instagram </a></li>
+                        <li><a class="grey-text text-lighten-3" href="mailto:gustavogiovanne3@gmail.com"> <i class="far fa-envelope-open"></i> Email </a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-         </div>
-         <div class="row">
-            <div class="col-md-8">
-               <input type="text" class="form-control" placeholder="Description" id="description" />
+            <div class="footer-copyright">
+                <div class="container center">
+                © 2019, @Gughog
+                </div>
             </div>
-            <div class="col-md-2">
-               <input type="text" class="form-control" placeholder="Value" id="value" />
-            </div>
-            <div class="col-md-2 d-flex justify-content-end">
-               <button type="button" class="btn btn-primary" id="btn_cad" onclick="register()">
-               <i class="fas fa-plus"></i>
-               </button>
-            </div>
-         </div>
-      </div>
-      <div class="modal fade" id="registerDialog" tabindex="-1" role="dialog" aria-labelledby="registerDialog" aria-hidden="true">
-         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-               <div id="modal_header">
-                  <h5 class="modal-title" id="modal_label"></h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                  </button>
-               </div>
-               <div class="modal-body" id="modal_body"></div>
-               <div class="modal-footer">
-                  <button type="button" data-dismiss="modal" id="btn_modal"></button>
-               </div>
-            </div>
-         </div>
-      </div>
-      <script src="./libs/cleave.js"></script>
-      <script src="app.js"></script>
-   </body>
+        </footer>
+
+        <script src="./libs/cleave.js"></script>
+        <script src="app.js"></script>
+
+        <script>
+            $(document).ready(function(){
+                $('.sidenav').sidenav();
+            });
+
+            $(document).ready(function(){
+                $('select').formSelect();
+            });
+        </script>
+    </body>
 </html>

@@ -25,7 +25,6 @@ class Expense{
 }
 // ------------------------------------------------------------------
 class Db{
-
     constructor(){
         let id = localStorage.getItem('id')
 
@@ -33,7 +32,6 @@ class Db{
             localStorage.setItem('id', 0)
         }
     }
-
     getNextId(){
         let next_id = localStorage.getItem('id')
         return parseInt(next_id) + 1
@@ -56,21 +54,15 @@ class Db{
         for(let i = 1; i <= id; i++){
             //recupera a despesa:
             let expense = JSON.parse(localStorage.getItem(i))
-
             // verificar itens removidos:
             if(expense === null){
-
                 continue //continua o loop pulando a iteração em questão;
             }
-
             // adicionando um id aos objetos para identificar depois:
             expense.id = i
-
             // push do obj na array:
             expenses.push(expense)
-
         }
-
         // retorna a array de objetos:
         return expenses
     }

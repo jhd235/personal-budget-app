@@ -257,7 +257,15 @@ let searchRegisters = function(){
 }
 
 // ------------------------------------------------------------------
-// Libs:
+//jQuery:
+// for sidenav-mobile:
+$(document).ready(function(){
+    $('.sidenav').sidenav();
+});
+//for selects:
+$(document).ready(function(){
+    $('select').formSelect();
+});
 // Cleave.js:
 new Cleave('#value', {
     numeral: true,

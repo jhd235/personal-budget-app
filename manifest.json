@@ -1,0 +1,13 @@
+{
+  "name": "Personal Budget Application",
+  "short_name": "BudgetApp",
+  "description": "Get track of your expenses and save your budget!",
+  "start_url": "/?homescreen=1",
+  "background_color": "#1a237e",
+  "theme_color": "#1a237e",
+  "icons": [{
+    "src": "img/icon.png",
+    "sizes": "256x256",
+    "type": "image/png"
+  }]
+}

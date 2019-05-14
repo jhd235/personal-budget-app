@@ -17,7 +17,7 @@ class Expense{
         this.day = day
         this.type = type
         this.description = description
-        this.value = parseFloat(value)
+        this.value = value
     }
 
     // Criar estrutura de validação dos dados do user;
@@ -260,7 +260,7 @@ let loadRegisters = function(expenses = Array(), filter = false){
         
         //itera sobre os valores 'value' de expenses 
         let mappedSpent = expenses.map((item) => {
-            return item.value
+            return parseFloat(item.value)
         })
 
         // Soma os valores da array produza pelo map

@@ -199,7 +199,7 @@ let loadRegisters = function(expenses = Array(), filter = false){
         line.insertCell(0).innerHTML = `${d.day}/${d.month}/${d.year} `
         line.insertCell(1).innerHTML = d.type
         line.insertCell(2).innerHTML = d.description
-        line.insertCell(3).innerHTML = `R$ ${d.value}`
+        line.insertCell(3).innerHTML = `$ ${d.value}`
 
         // Botão para deletar despesa
         let btn = document.createElement('button') // criar o button

@@ -226,7 +226,7 @@ let loadRegisters = function(expenses = Array(), filter = false){
         // Soma os valores da array produza pelo map
         let sumSpent = mappedSpent.reduce((a,b) => a + b)
 
-        total_spent.innerHTML = `R$ ${sumSpent}`
+        total_spent.innerHTML = `$ ${sumSpent.toFixed(2)}`
     })
 }
 // ------------------------------------------------------------------
